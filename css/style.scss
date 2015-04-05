@@ -1,0 +1,20 @@
+$font-stack: Roboto Slab;
+$font-color: purple;
+$color-main: teal;
+$color-win: black;
+$full-op: 0.8;
+$partial-op: 0.5;
+
+body {
+  font-family: $font-stack;
+  font-stroke: $font-color;
+
+  rect.on {
+    fill: $color-main;
+    fill-opacity: $full-op;
+  }
+  rect.off {
+    fill: $color-win;
+    fill-opacity: $partial-op;
+  }
+}

@@ -1,0 +1,11 @@
+body {
+  font-family: Roboto Slab;
+  font-stroke: purple; }
+  body rect.on {
+    fill: teal;
+    fill-opacity: 0.8; }
+  body rect.off {
+    fill: black;
+    fill-opacity: 0.5; }
+
+/*# sourceMappingURL=style.css.map */

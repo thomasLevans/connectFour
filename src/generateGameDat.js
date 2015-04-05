@@ -1,4 +1,11 @@
-define(['cell'], function(cell) {
+/*
+* Tom Evans
+*
+*/
+
+'use strict';
+
+define(['d3', 'cell'], function(d3, Cell) {
 	var X_DIMENSION = 7;
 	var Y_DIMENSION = 6;
 
@@ -6,13 +13,14 @@ define(['cell'], function(cell) {
 		generateGameDat: function (tableSet, data){
 		    for(var i = 0; i < 6; i++){
 		        var rowDat = [];
-		        var h = document.getElementById('gameSVG').clientHeight;
-				var w = document.getElementById('gameSVG').clientWidth;
+						var w = d3.select('.board')[0][0].clientWidth;
+						var h = Number(w * 0.4).toFixed();
 		        var slotArea = (this.scaleBoardX(w) * this.scaleBoardY(h)) / (X_DIMENSION * Y_DIMENSION);
-				var slotRadius = (Math.sqrt((slotArea * 0.3) / Math.PI));
+						var slotRadius = (Math.sqrt((slotArea * 0.3) / Math.PI));
+
 		        for(var j = 0; j < 7; j++){
-		            tableSet.push(new cell.Cell(j, i, this.getSlotOffSet(j, w, X_DIMENSION), this.getSlotOffSet(i, h, Y_DIMENSION), slotRadius, ' '));
-		            rowDat.push(new cell.Cell(j, i, this.getSlotOffSet(j, w, X_DIMENSION), this.getSlotOffSet(i, h, Y_DIMENSION), slotRadius, ' '));
+		            tableSet.push(new Cell(j, i, this.getSlotOffSet(j, w, X_DIMENSION), this.getSlotOffSet(i, h, Y_DIMENSION), slotRadius, ' '));
+		            rowDat.push(new Cell(j, i, this.getSlotOffSet(j, w, X_DIMENSION), this.getSlotOffSet(i, h, Y_DIMENSION), slotRadius, ' '));
 		        }
 		        data.push(rowDat);
 		    }

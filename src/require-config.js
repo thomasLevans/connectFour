@@ -1,3 +1,10 @@
+/*
+* Tom Evans
+*
+*/
+
+'use strict';
+
 requirejs.config({
   baseUrl:'src',
 	paths: {

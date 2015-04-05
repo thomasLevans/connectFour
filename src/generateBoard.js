@@ -1,16 +1,18 @@
 define(['d3', 'generateGameDat', 'gameRules'], function(d3, generateGameDat, gameRules){
 	return{
 		generateBoard: function(tableSet, data){
-			console.log('function: generateBoard');
-			var h = document.getElementById('gameSVG').clientHeight;
-			var w = document.getElementById('gameSVG').clientWidth;
-			var svg = d3.select('svg.fillScreen');
+			var w = d3.select('.board')[0][0].clientWidth;
+			var h = Number(w * 0.4).toFixed();
+			var svg;svg = d3.select('.board')
+				.append('svg')
+				.attr('width', w)
+				.attr('height', h);
 
 			var gameBoard = svg.append('rect')
 		        .attr('width', generateGameDat.scaleBoardX(w))
 		        .attr('height', generateGameDat.scaleBoardY(h))
 		        .attr('id', 'gameBoard')
-		        .style('fill', 'teal')
+						.attr('class', 'on')
 		        .style('position', 'absolute');
 	    	var slots = svg.selectAll('circle')
 		        .data(tableSet)
@@ -34,10 +36,6 @@ define(['d3', 'generateGameDat', 'gameRules'], function(d3, generateGameDat, gam
 		        .attr('id', function(d){
 		            return 'slot' + d.xR + '-' + d.yR;
 		        });
-			d3.select('div.btnRestart')
-		 		.append('btn')
-		 		.attr('class', 'btn btn-primary')
-		 		.attr('text', 'Restart');
 		}
 	} // END RETURN
 });

@@ -66,31 +66,25 @@ define(['d3', 'cell'], function(d3, cell){
 		},
 		weGotAWinner: function(x, y, data){
 			var d3 = require('d3');
-			var h = document.getElementById('gameSVG').clientHeight;
-			var w = document.getElementById('gameSVG').clientWidth;
-		    var color = (data[x][y].token == 'R') ? 'Red':'Yellow';
-		    var winningString = 'Game Over ' + color + ' Wins';
-		    d3.select('rect#gameBoard')
-		    	.transition()
-		    	.style('fill', 'black');
-		    d3.select('svg.fillScreen')
-		    	.append('rect')
-	            .attr('width', w/2)
-	            .attr('height', h/3)
-	            .attr('x', w/4)
-	            .attr('y', h/3)
-	            .attr('class', 'gameOverBox');
-		    d3.select('svg.fillScreen')
-		    	.append('text')
-	            .text(winningString)
-	            .attr('class', 'gameOverBoxText')
-	            .attr('x', w/2)
-	            .attr('y', h/2)
-	            .style('fill', color);
-		    d3.select('rect.gameOverBox')
-		    	.transition()
-		    	.delay(1000)
-		    	.style('opacity', 0.33);
+			var h = d3.select('svg')[0][0].clientHeight;
+			var w = d3.select('svg')[0][0].clientWidth;
+			// var h = document.getElementById('gameSVG').clientHeight;
+			// var w = document.getElementById('gameSVG').clientWidth;
+			var inHtml = '<a href="#" class="close" data-dismiss="alert">&times;</a>';
+	    var playerWin = data[x][y].token == 'R';
+			var message = (playerWin) ? '<h3><strong>Congratz!</strong> You won!</h3>':
+				'<h3><strong>Boo Hiss!</strong> You lost, try again!</h3>';
+
+			d3.select('rect#gameBoard')
+				.attr('class', 'off');
+
+			d3.select('div#alert')
+				.attr('class', function() {
+					return (playerWin) ? 'alert alert-success text-center': 'alert alert-error text-center';
+				})
+				.html(inHtml+message);
+
+
 		},
 		parseCellTable: function(cells){
 

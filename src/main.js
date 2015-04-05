@@ -1,4 +1,5 @@
 
+
 require(['generateBoard', 'generateGameDat'], function(generateBoard, generateGameDat){
 	var data = [];
 	var tableSet = [];
